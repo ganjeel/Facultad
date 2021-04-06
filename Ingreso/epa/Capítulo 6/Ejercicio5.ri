@@ -1,0 +1,94 @@
+{5.Programe al robot para que realice cada uno de los cuatro recorridos
+de la figura 6.7}
+
+programa ejercicio5
+
+procesos
+
+  proceso izquierda
+  comenzar
+    repetir 3
+      derecha
+  fin
+
+  proceso medioCuadrado (E lado:numero)
+  comenzar
+    repetir 2
+      repetir lado
+        mover
+      derecha
+    repetir 2
+      derecha
+  fin
+
+  proceso medioRectangulo (E alto:numero; E ancho: numero)
+  comenzar
+    repetir alto
+      mover
+    derecha
+    repetir ancho
+      mover
+    izquierda
+  fin
+
+  proceso recorridoA
+  variables
+    lado: numero
+  comenzar
+    lado := 4
+    repetir 3
+      medioCuadrado (lado)
+      lado := lado - 1
+  fin
+
+  proceso recorridoB
+  comenzar
+    Pos(3,1)
+    repetir 3
+      medioCuadrado(2)
+  fin
+
+  proceso recorridoC
+  variables
+    alto: numero
+    ancho: numero
+  comenzar
+    alto := 3
+    ancho := 2
+    repetir 3
+      medioRectangulo(alto, ancho)
+      alto := alto - 1
+      ancho := ancho + 1
+  fin
+    
+  proceso recorridoD
+  variables
+    alto: numero
+    ancho: numero
+  comenzar
+    Pos(1,5)
+    alto := 2
+    ancho := 4
+    repetir 2
+      repetir 2
+        medioRectangulo(alto, ancho)
+      derecha
+  fin
+
+
+areas
+  ciudad: AreaC(1,1,100,100)
+
+robots
+  robot robot1
+  comenzar
+    recorridoD
+  fin
+
+variables
+  R-info: robot1
+
+comenzar
+  AsignarArea(R-info, ciudad)
+  Iniciar(R-info, 1, 1)
+fin

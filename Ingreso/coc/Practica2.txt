@@ -1,0 +1,111 @@
+
+
+    1) Realizar las siguientes operaciones lógicas:
+Nota: Se opera lógicamente con los bits ubicados en la misma posición del o de los operandos
+
+00010001 AND 01011100 = 00010000
+
+01010101 AND 01010101 = 01010101
+
+01010101 AND 10101010 = 00000000
+
+11110000 AND 11111111 = 11110000
+
+01010101 OR 01010101 = 01010101
+
+01010101 OR 10101010 = 11111111
+
+11110001 OR 11110010 = 11110011
+
+01010101 XOR 01010101 = 00000000
+
+01010101 XOR 10101010 = 11111111
+
+00001111 XOR 00000000 = 00001111
+
+NOT 11111111 = 00000000
+
+NOT 01000000 = 10111111
+
+NOT 00001110 = 11110001
+
+
+2) Si DATO “operación_lógica” MASK = RESULTADO, determine la operación lógica y el valor de
+MASK tal que RESULTADO sea el indicado:
+
+DATO                   Op.lógica      MASK     =   RESULTADO
+
+D7 D6 D5 D4 D3 D2 D1 D0    OR      11100111    =   1  1  1  D4 D3 1  1  1
+D7 D6 D5 D4 D3 D2 D1 D0    OR      00001000    =   D7 D6 D5 D4 1  D2 D1 D0
+D7 D6 D5 D4 D3 D2 D1 D0    AND     01111111    =   0  D6 D5 D4 D3 D2 D1 D0
+D7 D6 D5 D4 D3 D2 D1 D0    XOR     01010000    =   D7~D6 D5~D4 D3 D2 D1 D0
+
+3) Analice los siguientes esquemas y determine los valores de las salidas C y D.para todas las
+combinaciones de entrada (A y B o A, B y IN). ¿Puede asociar los resultados obtenidos con
+una operación aritmética?
+
+A   B      C   D
+1   1      1   0
+0   1      0   1
+1   0      0   1
+0   0      0   0
+
+A   B   IN      AB  (A~B)+(~AB)[E]  E*IN    C   D   
+1   1   1       1       0           0       1   1
+0   1   1       0       1           1       1   0
+1   0   1       0       1           1       1   0
+0   0   1       0       0           0       0   1
+1   1   0       1       0           0       1   0
+0   1   0       0       1           0       0   1
+1   0   0       0       1           0       0   1
+0   0   0       0       0           0       0   0
+
+4) Si sólo se poseen puertas lógicas NAND:
+a) ¿Cree ud. que será posible obtener las funciones AND, OR y NOT?
+b) ¿Cómo se implementarían?
+
+NOT
+
+A -- NAND
+Con B nulo se niega A
+
+
+AND
+A   \ NAND -- NAND
+B   /
+El negar la salidad de NAND con otro NAND es equivalente a un AND
+
+
+OR
+
+Por De Morgan ~(AB) <=> ~A + ~B
+Si se pasan A y B por una NAND cada una antes de pasarla por la NAND se está cumpliendo lo de arriba
+
+A -- NAND \ NAND
+B -- NAND /
+
+
+5) Analice el siguiente circuito, suponiendo que las entradas corresponden a 2 valores A y B
+expresados con 4 bits y los subíndices reflejan la posición de cada bit. Determine y describa
+en qué condiciones la salida F es igual a ‘1’.
+
+Como F sale de un NOR, este será 1 cuando todas las entradas sean 0, como todas las entradas 
+vienen de XOR, para que sean 0, las entradas de cada XOR deben ser iguales, por lo tanto:
+
+A0    A1   A2   A3     B0    B1    B2    B3
+1     1     1     1       1     1     1     1  
+0     1     1     1       0     1     1     1  
+1     0     1     1       1     0     1     1  
+0     0     1     1       0     0     1     1   
+1     1     0     1       1     1     0     1  
+0     1     0     1       0     1     0     1    
+1     0     0     1       1     0     0     1  
+0     0     0     1       0     0     0     1     
+1     1     1     0       1     1     1     0  
+0     1     1     0       0     1     1     0  
+1     0     1     0       1     0     1     0
+0     0     1     0       0     0     1     0
+1     1     0     0       1     1     0     0  
+0     1     0     0       0     1     0     0  
+1     0     0     0       1     0     0     0  
+0     0     0     0       0     0     0     0  

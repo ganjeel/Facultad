@@ -1,0 +1,26 @@
+programa ejercicio8
+areas
+  ciudad: AreaC(1,1,100,100)
+robots
+  robot robot1
+  variables
+    cantidadPapeles: numero
+  comenzar
+    cantidadPapeles := 0
+    Pos(1,2)
+    derecha
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+      cantidadPapeles := cantidadPapeles + 1
+    mientras ((cantidadPapeles < 10) & (PosAv < 100)) 
+      mover
+      mientras (HayPapelEnLaEsquina)
+        tomarPapel
+        cantidadPapeles := cantidadPapeles + 1
+  fin
+variables
+  R-info: robot1
+comenzar
+  AsignarArea(R-info, ciudad)
+  Iniciar(R-info, 1, 1)
+fin

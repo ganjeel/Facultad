@@ -1,0 +1,51 @@
+{6.(a) Escriba un proceso que le permita al robot realizar un rectángulo de base 
+5 y altura 3 girando en la dirección contraria a la de las agujas delreloj.
+(b) Indique si se produce alguna modificación en los procesos de los ejercicios 
+4 y 5 si se reemplaza el módulo realizado en 3 por el implementado en 6.a.}
+
+programa ejercicio6
+
+procesos
+ 
+  proceso ajuste
+  comenzar
+    repetir 2
+      derecha
+  fin
+
+  proceso izquierda
+  comenzar
+    repetir 3
+      derecha
+  fin
+
+  proceso rectangulo
+  comenzar
+    ajuste
+    repetir 2
+      izquierda
+      repetir 5
+        mover
+      izquierda
+      repetir 3
+        mover
+    ajuste
+  fin
+
+
+areas
+  ciudad: AreaC(1,1,100,100)
+
+robots
+  robot robot1
+  comenzar
+    rectangulo
+  fin
+
+variables
+  R-info: robot1
+
+comenzar
+  AsignarArea(R-info, ciudad)
+  Iniciar(R-info, 1, 1)
+fin

@@ -1,0 +1,66 @@
+{9.(a) Implemente un proceso para que el robot recorra una avenida 
+juntando flores y se detenga cuando haya juntado 30 flores (seguro 
+existe dicha cantidad).
+(b) Modifique el proceso  implementado en (a) sabiendo  que las 30 
+flores pueden no existir.
+(c) Implemente un programa que recorra  todas  las  avenidas de la
+ciudad, utilizando el proceso implementado en (a).}
+
+programa ejercicio9
+
+procesos
+
+  proceso juntarFlores
+  comenzar
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+  fin
+
+  proceso juntarFloresAvenida
+  variables
+    deboDetenerme: boolean
+    cantidadFlores: numero
+  comenzar
+    cantidadFlores := 0
+    deboDetenerme := F
+    mientras (~ deboDetenerme)
+      juntarFlores
+      si ( cantidadFlores > 30 )
+        deboDetenerme := V
+      sino
+        mover
+  fin
+
+  proceso juntarFloresAvenidaMOD                {Parte (b)}
+  variables
+    deboDetenerme: boolean
+    cantidadFlores: numero
+  comenzar
+    cantidadFlores := 0
+    deboDetenerme := F
+    mientras (~ deboDetenerme)
+      juntarFlores
+      si ( cantidadFlores > 30) | (PosCa = 100)
+        deboDetenerme := V
+      sino
+        mover
+  fin
+
+areas
+  ciudad: AreaC(1,1,100,100)
+
+robots
+  robot robot1
+  comenzar
+    repetir 100
+      juntarFloresAvenida
+      Pos(PosAv + 1, 1)
+  fin
+
+variables
+  R-info: robot1
+
+comenzar
+  AsignarArea(R-info, ciudad)
+  Iniciar(R-info, 1, 1)
+fin

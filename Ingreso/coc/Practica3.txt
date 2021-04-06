@@ -1,0 +1,77 @@
+1) Convertir los siguientes valores decimales a binario y a hexadecimal:
+
+
+27                             1 1011                       1B
+54                            11 0110                       36
+108                          110 1100                       6C                       
+542                      10 0001 1110                      21E
+1084                    100 0011 1100                      43C
+2013                    111 1101 1101                      7DD
+2168                   1000 0111 1000                      878
+
+
+2) Convertir los siguientes valores a decimal:
+
+a) 1 0001 1110 1010                         4586                                                          
+b) 1 0100 1110 0111 1000                   85624             
+c) FECB     1111 1110 1100 1011            65227                                                                      
+d) 1B2C     0001 1011 0010 1100             6956
+
+
+3) Completar la siguiente tabla:
+
+5689           1 0110 0011 1001             1639
+896                11 1000 0000              380
+713                10 1100 1001              2C9
+
+4)Realizar las siguientes operaciones de suma  y resta indicando el estado de 
+las banderas de Z(cero), N(negativo), V(overflow) y C(carry).  Interpretar el
+resultado obtenido considerando que la operación trabaja con valores binarios 
+que:
+
+a) representaban números enteros sin signo y
+b) representaban números enteros con signo (complemento a 2).
+
+
+             Resultado    ZNVC     a) sin signo   OK?   b) Ca2         OK?
+
+00000001     10000001     0100     1+128=129      Si    1+(-128)=127   Si
++ 
+10000000
+
+01110000     10011111     0100     112+47=159     Si    112+47=-97     No
++
+00101111
+
+01000000     10000000     0010     64+64=128      Si    64+64=128      Si
++ 
+01000000
+
+11111111     11111110     0111     256+1=254      No    -1+1=-2        No
++ 
+00000001
+
+01111111     10000000     0000     127+1=128      Si    127+1=128      Si   
++ 
+00000001
+
+11111111     00000001     0011     256+255=1      No    -1-2=1         No
++ 
+11111110
+
+11000000     10000011     0011     192+67=131     No    -64+67=-125    No
++
+01000011
+
+11000000     10000000     0011     192+192=128    No    -64-64=-127    No
++ 
+11000000 
+
+10011111     10001111     0001     159+240=143    No    -97-16=-113    Si
++ 
+11110000
+
+00100000     11000000     0101     32-96=192      No    32-96=-64      Si
+– 
+01100000
+

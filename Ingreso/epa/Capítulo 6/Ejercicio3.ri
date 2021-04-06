@@ -1,0 +1,14 @@
+{3.Escriba  un  proceso  que  le  permita  al  Robot  realizar  un  rectángulo
+a  partir  de  la esquina donde  está parado cuyas  dimensiones, alto y ancho,
+se reciben.}
+
+proceso rectangulo (E alto: numero, E ancho: numero)
+comenzar
+  repetir 2
+    repetir alto
+      mover
+    derecha
+    repetir ancho
+      mover
+    derecha
+fin

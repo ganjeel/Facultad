@@ -1,0 +1,102 @@
+{5.Rehacer  el  recorrido  del  ejercicio  4.c)  trasladando  los papeles de
+cada  esquina correspondientes a un lado del rectángulo al vértice siguiente 
+en el recorrido. Por ejemplo, para  el rectángulo  con vértice en (1,1), los 
+papeles de (1,2) y (1,3) deben ser trasladados a  (1,4);  los  de  la  calle
+4 entre las avenidas 2 y 5 deben  ser reubicados en (6,4); y así siguiendo.}
+
+programa ejercicio5
+
+procesos
+
+  proceso izquierda
+  comenzar
+    repetir 3
+      derecha
+  fin
+
+  proceso juntarPapeles
+  comenzar
+    mientras(HayPapelEnLaEsquina)
+      tomarPapel
+  fin
+
+  proceso depositarPapeles
+  comenzar
+    mientras(HayPapelEnLaBolsa)
+      depositarPapel
+  fin
+
+  proceso limpiarVertice
+  comenzar
+    juntarPapeles
+    mover
+    depositarPapeles
+  fin
+
+  proceso limpiarRectangulo
+  comenzar
+    repetir 2
+      limpiarVertice
+      repetir 2
+        mover
+      derecha
+      limpiarVertice
+      repetir 4
+        mover
+      derecha
+  fin
+
+  proceso rectangulo
+  comenzar
+    limpiarRectangulo
+    repetir 2
+      repetir 3
+        mover
+        juntarPapeles 
+      derecha
+      depositarPapeles
+      repetir 5
+        mover
+        juntarPapeles
+      derecha
+      depositarPapeles
+  fin
+
+  proceso figuraC
+  variables
+    impar: boolean
+    pos: numero
+  comenzar
+    impar := V
+    pos := 1
+    repetir 4
+      si (impar)
+        Pos(pos, 1)
+        rectangulo
+        pos := pos + 6
+        impar := ~ impar
+      sino
+        Pos(pos, 6)
+        derecha
+        rectangulo
+        pos := pos + 4
+        impar := ~ impar
+        izquierda
+  fin
+
+areas
+  ciudad: AreaC(1,1,100,100)
+
+robots 
+  robot robot1
+  comenzar
+    figuraC
+  fin
+
+variables
+  R-info: robot1
+
+comenzar
+  AsignarArea(R-info, ciudad)
+  Iniciar(R-info, 1, 1)
+fin>

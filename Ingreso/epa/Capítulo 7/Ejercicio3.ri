@@ -1,0 +1,141 @@
+{3. Escriba un programa para que el robot  recorra la avenida 9 depositando
+en cada esquina lo que haga falta para que  la cantidad de flores supere en
+1  a la  cantidad  de  papeles.  Si no  tiene en su bolsa lo necesario para 
+hacerlo debe detener recorrido. Al finalizar  debe  informar la cantidad de 
+esquinas que pudo completar adecuadamente. Si el recorrido quedo incompleto 
+debe retornar a (9,1).}
+
+programa ejercicio3
+
+procesos
+
+  proceso EstadoInicialBolsa (ES flores:numero; ES papeles:numero)
+  comenzar
+
+    mientras(HayFlorEnLaBolsa)
+      depositarFlor
+      flores := flores + 1
+    
+    mientras(HayPapelEnLaBolsa)
+      depositarPapel
+      papeles := papeles + 1
+    
+    repetir flores
+      tomarFlor
+    
+    repetir papeles
+      tomarPapel
+
+  fin
+
+  
+  proceso ComprobarEstadoEsquina (ES flores: numero; ES papeles: numero; ES diferencia:numero )
+  comenzar
+
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+      flores := flores + 1
+    repetir flores
+      depositarFlor
+  
+    mientras(HayPapelEnLaEsquina)
+      tomarPapel
+      papeles := papeles + 1
+    repetir papeles
+      depositarPapel
+
+    diferencia := flores - papeles
+  fin
+
+
+  proceso Equiparar (ES floresBolsa: numero; ES papelesBolsa: numero; ES interrumpido:boolean; ES esquinas: numero)
+  variables
+    floresEsquina : numero
+    papelesEsquina : numero
+    diferencia : numero
+    faltante : numero
+  comenzar
+
+    floresEsquina := 0
+    papelesEsquina := 0
+
+    diferencia := 0
+
+    faltante := 0
+
+    ComprobarEstadoEsquina(floresEsquina, papelesEsquina, diferencia)
+
+  
+    si (diferencia > 0)
+      faltante := diferencia - 1
+      si (papelesBolsa >= faltante)
+        repetir faltante
+          depositarPapel
+          papelesBolsa := papelesBolsa - 1
+        esquinas := esquinas + 1
+      sino
+        interrumpido := V
+        Pos(9,1)
+    sino
+      Informar(diferencia)
+      faltante := -diferencia + 1
+      Informar(faltante)
+      si (floresBolsa >= faltante)
+        repetir faltante
+          depositarFlor
+          floresBolsa := floresBolsa - 1
+        esquinas := esquinas + 1
+      sino
+        interrumpido := V
+        Pos(9,1)
+  fin
+
+
+areas
+  ciudad: AreaC(1,1,100,100)
+
+robots 
+  robot robot1
+  variables
+
+    floresBolsa: numero
+    papelesBolsa: numero
+    cantidadFlores: numero
+    cantidadPapeles: numero
+
+
+    interrumpido : boolean
+
+    esquinasCompletas: numero
+
+  comenzar
+    floresBolsa := 0
+    papelesBolsa := 0
+
+    cantidadFlores := 0
+    cantidadPapeles := 0
+
+    interrumpido := F
+
+    esquinasCompletas := 0
+
+    EstadoInicialBolsa(floresBolsa, papelesBolsa)
+
+    Pos(9,1)
+
+    mientras (~ interrumpido)
+      Equiparar(floresBolsa, papelesBolsa, interrumpido, esquinasCompletas)
+      si (PosCa = 100) | (interrumpido)
+        interrumpido := V
+      sino
+        mover
+    Informar(esquinasCompletas)
+  fin
+
+variables
+  R-info: robot1
+
+comenzar
+  AsignarArea(R-info, ciudad)
+  Iniciar (R-info, 1, 1)
+fin

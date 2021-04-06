@@ -1,0 +1,71 @@
+{8.Programe al robot para que recorra  la ciudad  de  la  siguiente manera: 
+primero debe recorrer la avenida 1 juntando todas las flores que encuentre, 
+luego debe  recorrer la calle 1  juntando todos los papeles  que encuentre. 
+Luego  recorre la  avenida 2 y  la  calle  2  de  la  misma  manera  y  así  
+siguiendo.  Implemente  un  módulo  pararecorrer  la avenida  y otro módulo 
+para recorrer la calle.}
+
+programa ejercicio8
+
+procesos
+  
+  proceso izquierda
+  comenzar
+    repetir 3
+      derecha
+  fin
+
+  proceso juntarFlores
+  comenzar
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+  fin
+
+  proceso juntarPapeles
+  comenzar
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+  fin
+
+  proceso recorrerAvenida
+  comenzar
+    repetir 99
+      juntarFlores
+      mover
+    juntarFlores
+  fin
+
+  proceso recorrerCalle
+  comenzar
+    derecha
+    repetir 99
+      juntarPapeles
+      mover
+    juntarFlores
+    izquierda
+  fin
+
+areas
+  ciudad: AreaC(1,1,100,100)
+
+robots
+  robot robot1
+  variables
+    pos: numero
+  comenzar
+    pos := 1
+    repetir 100
+      Pos(pos, 1)
+      recorrerAvenida
+      Pos(1, pos)
+      recorrerCalle
+      pos := pos + 1
+  fin
+
+variables
+  R-info: robot1
+
+comenzar
+  AsignarArea(R-info, ciudad)
+  Iniciar(R-info, 1, 1)
+fin

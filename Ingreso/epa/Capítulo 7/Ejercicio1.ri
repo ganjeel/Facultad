@@ -1,0 +1,53 @@
+{1. Escriba un programa que le permita al robot informar la cantidad total 
+de flores y la  cantidad total de papeles que hay en toda la ciudad.  Para 
+hacerlo, utilice un proceso que recorra  una calle cuyo número recibe como 
+parámetro y devuelva la información correspondiente.}
+
+programa ejercicio1
+procesos
+  proceso LimpiarEsquina (ES cantidadPapeles:numero; ES cantidadFlores:numero)
+  comenzar
+    mientras(HayPapelEnLaEsquina)
+      tomarPapel
+      cantidadPapeles := cantidadPapeles + 1
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+      cantidadFlores := cantidadFlores + 1
+  fin
+
+  proceso RecorrerCalle (E calle:numero; ES cantidadPapeles:numero; ES cantidadFlores:numero)
+  comenzar
+    Pos(1,calle)
+    repetir 99
+      LimpiarEsquina(cantidadPapeles, cantidadFlores)
+      mover
+    LimpiarEsquina(cantidadPapeles,cantidadFlores)
+  fin
+
+areas
+  ciudad: AreaC(1,1,100,100)
+
+robots
+  robot robot1
+  variables
+    calle: numero
+    cantidadFlores: numero
+    cantidadPapeles: numero
+  comenzar
+    cantidadFlores := 0
+    cantidadPapeles := 0
+    calle := 1
+    derecha
+    repetir 100
+      RecorrerCalle(calle, cantidadPapeles, cantidadFlores)
+      calle := calle + 1
+    Informar(cantidadPapeles, cantidadFlores)
+  fin
+
+variables
+  R-info: robot1
+
+comenzar
+  AsignarArea(R-info, ciudad)
+  Iniciar(R-info,1,1)
+fin

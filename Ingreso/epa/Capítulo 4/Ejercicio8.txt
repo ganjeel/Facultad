@@ -1,0 +1,46 @@
+8.Indique  si  son  verdaderas  o  falsas  las  siguientes  afirmaciones
+  de  acuerdo  al programa ‘Que Hace7’. JUSTIFIQUE cada respuesta.
+
+programa queHace7
+areas 
+  ciudad: AreaC(1,1,100,100)
+robots 
+  robot robot1
+  comenzar 
+    repetir 5
+      mover
+    derecha 
+    mientras((HayFlorEnLaEsquina|HayPapelEnLaEsquina)&(PosAv<100))
+      mover
+    mientras (HayFlorEnLaEsquina)
+      tomarFlor
+    mientras (HayPapelEnLaEsquina)
+      tomarPapel
+  fin
+variables
+R-info: robot1
+comenzar
+  AsignarArea(R-info,ciudad)
+  Iniciar(R-info,1,1)
+fin
+
+
+a)Se puede asegurar que el robot pasará por la esquina (10, 6)
+ F, en caso de que no haya flores ni papeles en alguna esquina entra (10,1) y (10,6)
+ el robot se detendrá en esta.
+
+b)Se puede asegurar que el robot pasará por la esquina (1, 6)
+ V, al finalizar el repetir 5, el robot quedará parado en esa esquina.
+
+d)En todas las esquinas por las que pasó el robot hay flores o papeles. 
+ F, únicamente se puede asegurar que habrá flores o papeles las esquinas que el robot 
+ recorra sobre la avenida 6 a partir de (6,2) inclusive.
+
+e)Al detenerse,se puede asegurar queel robotlevantaráflores y papeles. 
+ F, solo se detendrá en caso que no haya flores ni papeles en dicha esquina o al llegar
+ a la esquina (99, 6), en la cual puede darse el caso que haya flores o papeles.
+
+f)Al finalizar el recorrido,el robot tiene flores y papelesen la bolsa.
+ F, únicamente tendrá flores o papeles en la bolsa en caso de que llegue a la esquina
+ (99, 6) y en esta haya alguno de estos o que ya los tuviese antes de iniciar el 
+ recorrido.
