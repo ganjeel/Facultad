@@ -1,0 +1,70 @@
+1.Represente lossiguientes números en los sistemas BCS, Ca1, Ca2 y Ex2,restringidos a 8 bits. En los casos que no se pueda representar, aclarar por qué.
+Recuerde : Los positivos se representan igual en los sistemas BSS, BCS, Ca1 y Ca2 (ver representación de números en binario en el apunte). Los negativos en BCS, signo en el  bit de mayor peso (0 positivos y 1 negativos) y los restantes son módulo. Los negativos en Ca1, se obtiene el BSS del número en 8 bits, y luego se cambian unos por ceros y ceros por  unos.  Los  negativos  en  Ca2,  se  obtienen  sumando  1  a  la  representación  de  Ca1, o copiando hasta el primer 1 (incluido) desde la derecha el número en BSS, y luego se cambian unos por ceros y ceros por unos. En Ex2, se suma siempre el exceso (que en n bits será 2 n-1) y luego se representa como BSS.
+
+Decimal         BSS             BCS             Ca1             Ca2             Ex2
+0       :       0000 0000       0000 0000       0000 0000       0000 0000       1000 0000
+1       :       0000 0001       0000 0001       0000 0001       0000 0001       1000 0001
+127     :       0111 1111       0111 1111       0111 1111       0111 1111       1111 1111               
+128     :       1000 0000       *1              *1              *1              *1
+255     :       1111 1111       *1              *1              *1              *1
+256     :       *1              *1              *1              *1              *1
+-1      :       *2              1000 0001       1111 1110       1111 1111       0111 1111       
+-8      :       *2              1000 1000       1111 0111       1111 1000       0111 1000
+-127    :       *2              1111 1111       1000 0000       1000 0001       0000 0001
+-128    :       *2              *1              *1              1000 0000       0000 0000                
+-199    :       *2              *1              *1              *1              *1
+-256    :       *2              *1              *1              *1              *1
+137     :       1000 1001       *1              *1              *1              *1
+35      :       0010 0011       0010 0011       0010 0011       0010 0011       1010 0011
+100     :       0110 0100       0110 0100       0110 0100       0110 0100       1110 0100
+-100    :       *2              1110 0100       1001 1011       1001 1100       0001 1100
+0,5     :       *3              *3              *3              *3              *3
+1,25    :       *3              *3              *3              *3              *3
+
+*1 Se pasa de la representación, no alcanzan los bits para representar el número.
+*2 No permite representar números negativos.
+*3 No se pueden representar decimales con los sistemas predefinidos.
+
+2.Interprete las siguientes cadenas de 8 bits en los sistemas BSS, BCS, Ca1, Ca2 y Ex2.
+Recuerde: En Ex2, se interpreta como BSS y luego se resta el exceso (que en n bits es 2n-1)
+
+                        BSS         BCS         Ca1         Ca2         Ex2
+0000 0000    :          0           0           0           0           -128
+0101 0101    :          85          85          85          85          -43         
+1000 0000    :          128         -0          -127        -126        0
+1111 1110    :          254         -126        -1          0           126
+1111 1111    :          255         -127        0           *1          127
+1010 1010    :          170         -42         -85         -84         42
+0111 1111    :          127         127         127         127         -1
+0110 0110    :          102         102         102         102         -26
+
+3.Calcule  el  rango  y  resolución  de  un  sistema  de  punto  fijo  en BCS  con  1  bit de signo, 5 bits de parte entera y 4 de fraccionaria
+
+    S X XXXX , XXXX
+
+Rango: 1 1111 , 1111 - (- 1 1111, 1111)
+Rango: 63,9375 * 2 = 127,875
+
+Resolución : 0 0000, 0001 = 0,0625
+
+4.Representelos  siguientes númerosen el sistema del ejercicio 3. Si no es posible obtener una representación exacta, indique  cuál es la más próxima y calculeen ese caso el error cometido. Si el número a representar está fuera del rango del sistema, señale que ese número “NO SE PUEDE REPRESENTAR”.
+
+                    Representación      Valor representado          Error
+1,2         :       00 0001 0011        1,1875                      0,125
+1,25        :       00 0001 0100        1,25                        0   
+35          :       NO SE PUEDE REPRESENTAR
+-1,25       :       10 0001 0100        -1,25                       0
+1,0625      :       00 0001 0001        1,0625                      0    
+-1,5625     :       10 0001 1001        -1,5625                     0
+-35,5       :       NO SE PUEDE REPRESENTAR                
+
+5.Interprete las siguientes cadenas en el sistema del ejercicio 3.
+
+0 0 0000 0000  :        0 
+0 1 0101 0101  :        21,3125
+1 0 0000 0000  :        -0
+1 1 1111 1110  :        -31,875
+1 1 1111 1111  :        -31,9375
+1 0 1010 1010  :        -10,625
+0 1 1111 1111  :        31,9375
+0 1 1000 1100  :        24,75
