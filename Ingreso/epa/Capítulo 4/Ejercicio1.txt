@@ -1,0 +1,24 @@
+
+a)  Si en la esquina (4,3) solo hay flores, toma todas las flores
+    e informa verdadero, sino informa falso
+
+b)  Recorre la avenida 6 tomando solo una flor por esquina hasta
+encontrar una esquina en la que no haya flores o hasta que llegue 
+a la esquina 99.
+
+c)  Como el mover está dentro del mientras, va a tomar una flor y 
+moverse siempre y cuando encuentre flores en la esquina en la que
+se encuentra actualmente, este proceso se intentará repetir 100 veces,
+si encuentra una esquina vacía, quedará en esta, si no hay esquinas vacias,
+se caerá de la ciudad en la primer iteración del repetir 99.
+
+d)  Si no hay flores ni papeles en (1,1), se movera un lugar e informará 1,
+sino informará 0.
+
+e)  Recorrerá la calle 20 hasta encontrar una esquina sin flores o hasta
+llegar a la esquina 99. En cada esquina con flores tomará una y si encuentra
+una esquina sin flores informará 1, caso contrario informará 0.
+
+f)  Intentará tomar un papel y una flor por iteración mientras haya flores
+y papeles en la esquinq (1,1), en cada iteración sumará 1 a la variable
+cant.

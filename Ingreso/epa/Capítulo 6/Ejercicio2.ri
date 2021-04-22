@@ -1,0 +1,65 @@
+{2.Utilice el proceso de 1. para realizar los recorridos de la figura 6.5 
+a partir de (1,1).}
+
+
+programa ejercicio1
+
+procesos
+
+  proceso izquierda
+  comenzar
+    repetir 3
+      derecha
+  fin
+
+  proceso cuadrado (E lado: numero)
+  comenzar
+    repetir 4
+      repetir lado
+        mover
+      derecha
+  fin
+
+  proceso figuraA
+  variables
+    lado: numero
+  comenzar
+    derecha
+    mover
+    izquierda
+    lado := 1
+    repetir 4
+      cuadrado(lado)
+      lado := lado + 1
+  fin
+
+  proceso figuraB
+  variables
+    lado: numero
+  comenzar
+    lado := 1
+    repetir 5
+      cuadrado (lado)
+      derecha
+      repetir lado
+        mover
+      izquierda
+      lado := lado + 1
+  fin
+
+areas
+  ciudad: AreaC(1,1,100,100)
+
+robots
+  robot robot1
+  comenzar
+    figuraB
+  fin
+
+variables
+  R-info: robot1
+
+comenzar
+  AsignarArea(R-info, ciudad)
+  Iniciar(R-info, 1, 1)
+fin

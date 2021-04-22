@@ -1,0 +1,44 @@
+{11.Programe al Robot para que realice el recorrido de la figura 5.11 
+utilizando un proceso que permita hacer un escalón.}
+
+programa ejercicio11
+
+procesos
+
+  proceso izquierda
+  comenzar
+    repetir 3
+      derecha
+  fin
+
+  proceso moverDos
+  comenzar
+    repetir 2
+      mover
+  fin
+
+  proceso escalon
+  comenzar
+    moverDos
+    derecha
+    moverDos
+    izquierda
+  fin
+
+areas
+  ciudad: AreaC(1,1,100,100)
+
+robots
+  robot robot1 
+  comenzar
+    repetir 3
+      escalon
+  fin
+
+variables
+  R-info: robot1
+
+comenzar
+  AsignarArea(R-info, ciudad)
+  Iniciar(R-info, 1 ,1)
+fin

@@ -1,0 +1,35 @@
+
+
+1- Imprime la variable local al procedimiento b = 3, despues imprime las variables globales al programa b = 2 y a = 1.
+
+2- El programa imprime la variable global b = 3 (mala práctica) dentro del procedimiento, y luego imprime las viables globales b = 3 y a = 1.
+
+3- El programa imprime la variable local al procedimiento b = 3, luego intenta imprimer la variable global a = 1 pero falla al no encontrar
+la variable global b.
+
+4- El primer programa a pesar de utilizar una variable global dentro de un procedimiento funciona correctamente, primero imprime la variable
+global a = 1 dentro del procedimiento para finalmente imprimir b = 2 y a = 1. Por otro lado, el segundo programa no funciona, ya que intenta 
+hacer uso de la variable a en el procedimiento "uno", no declarada dentro del alcance del mismo (parámetros, variables locales al procedimiento,
+variables globales al programa).
+
+5- El problema en este programa está en el momento en que se invoca la función "cuatro", ya que al no asignarla a ninguna variable ni utilizarla
+en ninguna expresión, ni operación, ni como argumento de otra función, simplemente el programa se rompe. Por otro lado, dejando de lado esto, 
+la variable "a" imprimiría basura.
+
+7 c) El programa original entraría en la rama del si en el if principal, asignaria 0 a la variable "cant" y se rompería cuando ingresa por 
+segunda a la función calcular promedio e intenta dividir suma por cant, ya que la división por 0 genera un error.
+El programa luego de la modificación del inciso a funcionaría correctamente e imprimiría el resultado de la división.
+Luego de las modificaciones del inciso b el programa seguiría funcionando correctamente pero se ahorraría ejecutar por segunda vez la función.
+
+8) 
+    a)
+        i) El mayor problema que se encuentra es que la función analizarLetra no está disponible dentro del alcance de la secuencia 
+        principal del programa, por lo que la asignación de su retorno a la variable ok es incorrecta.
+        ii) Para que el programa funcione correctamente sería necesario declara dicha función fuera del procedimiento leer-
+    b)
+        i) La función analizar letra no cubre todos los valores del tipo char que no sean las letras mayúsculas y minúsculas, entre los
+        que se encuentran los caracteres numéricos, los caracteres especiales entre otros.
+        ii) Si se ingresa uno de estos valores la función analizarLetra no tendría retorno y habría problemas al usarla como condición del
+        if dentro de la secuencia principal del procedimiento leer.
+        iii) Este problema se podría resolver declarando un tipo definido por el usuario "letra" compuesto por un subrango de char que incluya 
+        las letras tanto mayúsculas como minúsculas y asignar dicho tipo al valor leido dentro del procedimiento leer.

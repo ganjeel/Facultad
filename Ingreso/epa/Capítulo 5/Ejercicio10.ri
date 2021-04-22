@@ -1,0 +1,74 @@
+{10.(a) Implemente un proceso para que el robot recorra una calle y se 
+detenga cuando encuentre un papel  (seguro  existe). Este proceso debe
+informar la cantidad de pasos dados hasta encontrar el papel.
+(b) Modifique  el proceso implementado  en  (a)  sabiendo que el papel
+puede  no existir y en dicho caso debe informar 999.
+(c) Implemente un programa que recorra todas las calles  de la ciudad, 
+utilizando el proceso implementado en (b).}
+
+
+programa ejercicio10
+
+procesos
+
+  proceso izquierda
+  comenzar
+    repetir 3
+      derecha
+  fin
+
+  proceso recorrerCalle
+  variables
+    cantidadPasos: numero
+  comenzar
+    cantidadPasos := 0
+    derecha
+    mientras (~ HayPapelEnLaEsquina)
+      mover
+      cantidadPasos := cantidadPasos + 1
+    izquierda
+    Informar(cantidadPasos)
+  fin
+
+  proceso recorrerCalleMOD
+  variables
+    cantidadPasos: numero
+    deboDetenerme: boolean
+    finDeLaCalle: numero
+  comenzar
+    deboDetenerme := F
+    cantidadPasos := 0
+    derecha
+    mientras (~ deboDetenerme)
+      si (HayPapelEnLaEsquina) | (PosAv = 100)
+        deboDetenerme := V
+      sino
+        mover
+        cantidadPasos := cantidadPasos + 1
+    
+    si (cantidadPasos < 99)
+      Informar(cantidadPasos)
+    sino
+      finDeLaCalle := 999
+      Informar(finDeLaCalle)
+    izquierda
+  fin
+
+areas
+  ciudad: AreaC(1,1,100,100)
+
+robots 
+  robot robot1
+  comenzar
+    repetir 100
+      recorrerCalleMOD
+      Pos(1, PosCa + 1)
+  fin
+
+variables
+  R-info: robot1
+
+comenzar
+  AsignarArea(R-info, ciudad)
+  Iniciar(R-info, 1, 1)
+fin

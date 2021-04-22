@@ -1,0 +1,7 @@
+1.
+    a. Imprime 25.
+    b. Imprime 10.
+    c. Se crearía un loop infinito dentro del for ya que la función reinicia el valor de i.
+
+2. Imprime 4 pares y 4 impares.
+

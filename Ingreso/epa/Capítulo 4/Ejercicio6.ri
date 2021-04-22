@@ -1,0 +1,61 @@
+{6.Programar al robot para que recorra el perímetro de la
+ciudad buscando una esquina con  exactamente  3  flores y
+3  papeles,  suponiendo  que  esta  esquina  existe. Debe 
+informar cual es la esquina encontrada.}
+
+programa ejercicio6
+areas
+  ciudad: AreaC(1,1,100,100)
+robots
+  robot robot1
+  variables
+    hayTresFlores: boolean
+    cantidadFlores: numero
+    hayTresPapeles: boolean
+    cantidadPapeles: numero
+
+  comenzar
+    repetir 4
+      repetir 99
+        si (HayFlorEnLaEsquina) & (HayPapelEnLaEsquina)
+  
+          cantidadFlores := 0
+          hayTresFlores:= F
+    
+          mientras (cantidadFlores < 4) & (HayFlorEnLaEsquina)
+            tomarFlor
+            cantidadFlores := cantidadFlores + 1
+          si (cantidadFlores = 3)
+            hayTresFlores := V
+  
+  
+          cantidadPapeles := 0
+          hayTresPapeles := F
+    
+          mientras (cantidadPapeles < 4) & (HayPapelEnLaEsquina)    
+            tomarPapel
+            cantidadPapeles := cantidadPapeles + 1
+          si (cantidadPapeles = 3)
+            hayTresPapeles := V 
+  
+  
+          si (hayTresFlores) & (hayTresPapeles)
+            Informar(PosAv,PosCa)
+  
+  
+          mientras(HayPapelEnLaBolsa)
+            depositarPapel
+          mientras(HayFlorEnLaBolsa)
+            depositarFlor
+        mover
+      derecha
+
+
+  fin
+
+variables
+  R-info: robot1
+comenzar
+  AsignarArea(R-info, ciudad)
+  Iniciar(R-info, 1, 1)
+fin

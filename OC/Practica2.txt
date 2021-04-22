@@ -1,0 +1,400 @@
+1.Represente lossiguientes números en los sistemas BCS, Ca1, Ca2 y Ex2,restringidos a 8 bits. En los casos que no se pueda representar, aclarar por qué.
+Recuerde : Los positivos se representan igual en los sistemas BSS, BCS, Ca1 y Ca2 (ver representación de números en binario en el apunte). Los negativos en BCS, signo en el  bit de mayor peso (0 positivos y 1 negativos) y los restantes son módulo. Los negativos en Ca1, se obtiene el BSS del número en 8 bits, y luego se cambian unos por ceros y ceros por  unos.  Los  negativos  en  Ca2,  se  obtienen  sumando  1  a  la  representación  de  Ca1, o copiando hasta el primer 1 (incluido) desde la derecha el número en BSS, y luego se cambian unos por ceros y ceros por unos. En Ex2, se suma siempre el exceso (que en n bits será 2 n-1) y luego se representa como BSS.
+
+Decimal         BSS             BCS             Ca1             Ca2             Ex2
+0       :       0000 0000       0000 0000       0000 0000       0000 0000       1000 0000
+1       :       0000 0001       0000 0001       0000 0001       0000 0001       1000 0001
+127     :       0111 1111       0111 1111       0111 1111       0111 1111       1111 1111               
+128     :       1000 0000       *1              *1              *1              *1
+255     :       1111 1111       *1              *1              *1              *1
+256     :       *1              *1              *1              *1              *1
+-1      :       *2              1000 0001       1111 1110       1111 1111       0111 1111       
+-8      :       *2              1000 1000       1111 0111       1111 1000       0111 1000
+-127    :       *2              1111 1111       1000 0000       1000 0001       0000 0001
+-128    :       *2              *1              *1              1000 0000       0000 0000                
+-199    :       *2              *1              *1              *1              *1
+-256    :       *2              *1              *1              *1              *1
+137     :       1000 1001       *1              *1              *1              *1
+35      :       0010 0011       0010 0011       0010 0011       0010 0011       1010 0011
+100     :       0110 0100       0110 0100       0110 0100       0110 0100       1110 0100
+-100    :       *2              1110 0100       1001 1011       1001 1100       0001 1100
+0,5     :       *3              *3              *3              *3              *3
+1,25    :       *3              *3              *3              *3              *3
+
+*1 Se pasa de la representación, no alcanzan los bits para representar el número.
+*2 No permite representar números negativos.
+*3 No se pueden representar decimales con los sistemas predefinidos.
+
+2.Interprete las siguientes cadenas de 8 bits en los sistemas BSS, BCS, Ca1, Ca2 y Ex2.
+Recuerde: En Ex2, se interpreta como BSS y luego se resta el exceso (que en n bits es 2n-1)
+
+                        BSS         BCS         Ca1         Ca2         Ex2
+0000 0000    :          0           0           0           0           -128
+0101 0101    :          85          85          85          85          -43         
+1000 0000    :          128         -0          -127        -126        0
+1111 1110    :          254         -126        -1          0           126
+1111 1111    :          255         -127        0           *1          127
+1010 1010    :          170         -42         -85         -84         42
+0111 1111    :          127         127         127         127         -1
+0110 0110    :          102         102         102         102         -26
+
+3.Calcule  el  rango  y  resolución  de  un  sistema  de  punto  fijo  en BCS  con  1  bit de signo, 5 bits de parte entera y 4 de fraccionaria
+
+    S X XXXX , XXXX
+
+Rango: 1 1111 , 1111 - (- 1 1111, 1111)
+Rango: 63,9375 * 2 = 127,875
+
+Resolución : 0 0000, 0001 = 0,0625
+
+4.Representelos  siguientes númerosen el sistema del ejercicio 3. Si no es posible obtener una representación exacta, indique  cuál es la más próxima y calculeen ese caso el error cometido. Si el número a representar está fuera del rango del sistema, señale que ese número “NO SE PUEDE REPRESENTAR”.
+
+                    Representación      Valor representado          Error
+1,2         :       00 0001 0011        1,1875                      0,125
+1,25        :       00 0001 0100        1,25                        0   
+35          :       NO SE PUEDE REPRESENTAR
+-1,25       :       10 0001 0100        -1,25                       0
+1,0625      :       00 0001 0001        1,0625                      0    
+-1,5625     :       10 0001 1001        -1,5625                     0
+-35,5       :       NO SE PUEDE REPRESENTAR                
+
+5. Interprete las siguientes cadenas en el sistema del ejercicio 3.
+
+0 0 0000 0000  :        0 
+0 1 0101 0101  :        21,3125
+1 0 0000 0000  :        -0
+1 1 1111 1110  :        -31,875
+1 1 1111 1111  :        -31,9375
+1 0 1010 1010  :        -10,625
+0 1 1111 1111  :        31,9375
+0 1 1000 1100  :        24,75
+
+6. Calcule el  resultado  de  realizar  las sumas(ADD) y  restas  (SUB) indicadas  en  la  tabla.  Calcule  el  valor  en  que quedarán  los  flags  luego de realizada cada operación, de acuerdo a que haya habido acarreo (flag C, de Carry) o se haya producido borrow (flag B, es el mismo que C pero en la  resta), o que el resultado sea cero en todos sus bits (flag Z,  de  Zero)),  se  haya  producido  desbordamiento  (flag  V,  de  oVerflow),  o  de  un  resultado  negativo  (flag  N,  de Negative).
+
+
+                        BSS         BCS         Ca1         Ca2         Ex2
+        --11111
+ADD     00011101        29          29          29          29          -99
+        00011011        27          27          27          27          -101
+        00111000        56          56          56          56          -72
+                                                                        0 0011 1000 (Cambia el sistema a Ex2 con 9 bits)
+C=0 V=0
+
+
+       1--------
+ADD     01110000        112         112         112         112         -16
+        11110001        241         -113        -14         -15         113
+        01100001         97          97          97          97          -31
+                        101100001   10000001    10011101                1110 0001
+C=1     V=0
+
+             
+SUB     00011101        29          29          29          29          -99
+        00011011        27          27          27          27          -101
+        00000010        2           2           2           2           -126
+B=0 V=0                                                                 1000 0010
+
+
+SUB     01110000        112         112         112         112         -16
+        11110001        241         -113        -14         -15         113
+        01111111        127         127         127         127         -1
+B=1 V=0                 NEG         011100001   010000001               0 0111 1111 (Agrego un bit)
+
+
+ADD     10011101        157         -29         -98         -99         29
+        01110010        114         114         114         114         -14
+        00001111        15          15          15          15          -113
+C=1 V=0                 100001111   01010101    00010000                10001111        
+
+
+ADD     01001100        52          52          52          52          -76
+        01110000        112         112         112         112         -16
+        10111100        188         -60         -67         -68         60
+C=0 V=1                 10100100    010100100   010100100   010100100   00100010
+
+
+SUB     10011101        157         -29         -98         -99         29
+        01110010        114         114         114         114         -14
+        00101001        41          41          41          41          -87
+B=0 V=1                 00101011    110001111   100101011   100101011   011010100   
+
+
+        101-----
+SUB     01001100        76          76          76          76          -52
+        01110000        112         112         112         112         -16
+        11011100        220         -92         -35         -36         92
+B=1 V=0                 NEG         10100100    11011011                01011000    
+
+
+ADD     01110110        118         118         118         118         -10
+        01110001        113         113         113         113         -15
+        11100111        231         -103        -24         -25         103
+C=0 V=1                             011100111   011100111   011100111   01011101
+
+
+ADD     11001100        204         -76         -51         -52         76
+        11110000        240         -112        -15         -16         112
+        10111100        188         -60         -67         -68         60
+C=1 V=0                 110111100   110111100   10111101                110111100 (Agrego un bit)
+
+
+        ------0-
+SUB     01110110        118         118         118         118         -10
+        01110001        113         113         113         113         -15
+        00000101        5           5           5           5           -123
+B=0 V=0                                                                 10000101
+
+
+        001-----
+SUB     11001100        204         -76         -51         -52         76        
+        11110000        240         -112        -15         -16         112
+        11011100        220         -92         -35         -36         92           
+B=1 V=0                 NEG         00100010    11011101                01011100
+
+
+ADD     10111001        185         -57         -70         -71         57
+        11100011        227         -99         -28         -29         99
+        10011100        156         -28         -99         -100        28
+C=1 V=0                 11011100    110011100   10011101                110011100 
+
+
+ADD     10000000        128         -0          -127        -128        0
+        10000000        128         -0          -127        -128        0
+        00000000        0           0           0           0           -128
+C=1 V=1                 100000000               100000001   100000001   10000000
+
+
+        0---01--
+SUB     10111001        185         -57         -70         -71         57
+        11100011        227         -99         -28         -29         99
+        11010110        214         -86         -41         -42         86
+B=1 V=0                 NEG         10101010    11010101    11010110    01010110
+
+
+SUB     10000000        128         -0          -127        -128        0     
+        10000000        128         -0          -127        -128        0
+        00000000        0           0           0           0           -128
+B=0 V=0                 100000000                                       10000000
+
+
+ADD     00111010        58          58          58          58          -70
+        00001111        15          15          15          15          -113
+        01001001        73          73          73          73          -55
+C=0 V=0                                                                 110110111
+
+
+ADD     00000000        0           0           0           0           -128
+        10000000        128         -0          -127        -128        0
+        10000000        128         -0          -127        -128        0
+C=0 V=0                                                                 00000000
+
+
+        ---0010-
+SUB     00111010        58          58          58          58          -70
+        00001111        15          15          15          15          -113
+        00101011        43          43          43          43          -85
+B=0 V=0                                                                 10101011
+
+
+
+SUB     00000000        0           0           0           0           -128
+        10000000        128         -0          -127        -128        0
+        10000000        128         -0          -127        -128        0
+B=1 V=1                 NEG                     01111111    010000000   00000000
+
+8 y 9) Cuando los flag C o B están encendidos la representación en Ca1 está mal, quedando siempre a uno de diferencia con el valor esperado, por lo que la representación en Ca2 queda correcta. Cuando aparece el flag V sin C o B la representación en ambos sistemas es incorrecta ya que no alcanzan los bits para representar el número deseado. Cuando se presentan ambos flags en sinmultaneo (V y C o B) ocurre como en el último caso, la representación en Ca1 y Ca2 es erronea, sin embargo, en Ca1 es posible representar el valor deseado sin necesidad de agregar ningún bit.
+
+10)
+                        Ca2
+        
+ADD     000111,01       7,25
+        000110,11       6,75
+        001110,00       14,00           CORRECTO
+                
+C=0 V=0
+
+
+ADD     011100,00       28,00        
+        111100,01       -3,75
+        011000,01       24,25           CORRECTO
+
+C=1     V=0
+
+             
+SUB     000111,01       7,25        
+        000110,11       6,75
+        000000,10       0,5             CORRECTO
+
+B=0 V=0                 
+
+
+SUB     011100,00       28,00        
+        111100,01       -3,75
+        011111,11       31,75           CORRECTO
+B=1 V=0                 
+
+
+ADD     100111,01       -24,75 
+        011100,10       28,5
+        000011,11       3,75            CORRECTO
+C=1 V=0                         
+
+
+ADD     010011,00       19,0   
+        011100,00       28,00
+        101111,00       -17             INCORRECTO           
+C=0 V=1                 
+
+
+SUB     100111,01       -24,75    
+        011100,10       28,5 
+        001010,01       10,25           INCORRECTO
+B=0 V=1                    
+
+
+SUB     010011,00       19,00   
+        011100,00       28,00
+        110111,00       -9              CORRECTO
+B=1 V=0                     
+
+
+ADD     011101,10       29,5      
+        011100,01       28,25
+        111001,11       -6,25           INCORRECTO
+C=0 V=1                    
+
+
+ADD     110011,00       -13,00 
+        111100,00       -4,00
+        101111,00       -17,00          CORRECTO 
+C=1 V=0                 
+
+
+SUB     011101,10       29,5        
+        011100,01       28,25
+        000001,01       1,25            CORRECTO
+B=0 V=0               
+
+
+        001-----
+SUB     110011,00       -13,00          
+        111100,00       -4
+        110111,00       -9              CORRECTO  
+B=1 V=0                 
+
+
+ADD     101110,01       -17,75
+        111000,11       -7,25
+        100111,00       -25,00          CORRECTO
+C=1 V=0                 
+
+
+ADD     100000,00       -32 
+        100000,00       -32
+        000000,00       0               INCORRECTO
+C=1 V=1                 
+
+
+        0---01--
+SUB     101110,01       -17,75  
+        111000,11       -7,25
+        110101,10       -10,5           CORRECTO          
+B=1 V=0                 
+
+
+SUB     100000,00       -32      
+        100000,00       -32
+        000000,00       0               CORRECTO
+B=0 V=0                 
+
+
+ADD     001110,10       14,5     
+        000011,11       3,75
+        010010,01       18,25           CORRECTO
+C=0 V=0                    
+
+
+ADD     000000,00       0    
+        100000,00       -32
+        100000,00       -32             CORRECTO
+C=0 V=0                 
+
+
+        ---0010-
+SUB     001110,10       14,5
+        000011,11       3,75
+        001010,11       10,75           CORRECTO
+B=0 V=0              
+
+
+
+SUB     000000,00       0    
+        100000,00       -32
+        100000,00       -32             INCORRECTO
+B=1 V=1                 
+
+
+La interpretación es incorrecta únicamente cuando el flag de overflow está encendido.
+
+
+11.Escriba las cadenas de los sistemas BCS, Ca1, Ca2 y Ex2(n-1)restringido a 4 bits. Obtenga el rango de cada sistema en 4 bits y para n bits. ¿Cuántas cadenas se pueden escribir en cada caso?. ¿Cuántos números se pueden representar en los distintos sistemas?
+
+                BCS             Ca1             Ca2             Ex2
+0000            0               0               0               -8                                              
+0001            1               1               1               -7                                                             
+0010            2               2               2               -6                                              
+0011            3               3               3               -5                                              
+0100            4               4               4               -4                                              
+0101            5               5               5               -3                                              
+0110            6               6               6               -2                                               
+0111            7               7               7               -1                              
+1000            -0             -7              -8               0
+1001            -1             -6              -7               1              
+1010            -2             -5              -6               2
+1011            -3             -4              -5               3
+1100            -4             -3              -4               4
+1101            -5             -2              -3               5
+1110            -6             -1              -2               6
+1111            -7             -0              -1               7
+
+En todos los sistemas se puede representar la misma cantidad de números, únicamente cambian los rangos que cubren.
+
+
+12. Defina el sistema Exceso a M (donde M es un entero cualquiera).
+
+ExM -> k : k = k - M
+
+
+13. Describa  mecanismos  para  sumar  y  restar  en  BCS,  Ca1  y  Exceso,  en  base  al análisis de los resultados y flags del punto 6, realizando la  interpretación de los operandos y resultados en los distintos sistemas de representación citados. Observe de qué manera (qué operaciones deberían realizarse y en qué caso) se llegaría al resultado correcto.
+
+En exceso el resultado siempre está mal:
+        ADD: resultado + 128
+        SUB: resultado - 128
+        ADD + flag C: resultado - 128
+        SUB + flag B: resultado + 128
+        ADD + flag C y V: resultado + 128
+        SUB + flag B y V: resultado - 128
+
+En BCS si hay flag C o B, o flag V, el resultado estará mal.
+
+En Ca1 si hay flag C o B, o flag V, el resultado estará mal
+        ADD: resultado + 1
+        SUB: resultado - 1
+        ADD + flag C: resultado - 1
+        SUB + flag B: resultado + 1
+
+14.Interprete las siguientes cadenas descriptas en sistema Ca2. ¿Qué pasa en el caso (e)?
+
+a. 00100110     38
+b. 11011000     -40
+c. 00111000     56
+d. 00000000     0
+e. 10000000     -128    Es el opuesto al número en BSS.
+
+15.Interpretelas siguientes cadenas descriptas en sistema Ex2 (n-1)con n=8. ¿Qué pasa en el caso (e)?
+
+a. 10100110     38
+b. 01011000     -40
+c. 10111000     56
+d. 10000000     0
+e. 00000000     -128    Es el valor opuesto al exceso.

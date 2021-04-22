@@ -1,0 +1,79 @@
+1) El primer procesador tenía un bus de direcciones de 4 bits ¿Cuál cree ud. que fue uno de los
+problemas con que se encontró rápidamente este procesador?.
+
+    El problema es que únicamente podía direccionar 32 datos.
+
+
+2) ¿Cuántos bits se necesitan para direccionar 68719476736 lugares de memoria?. 
+
+    Se necesitan 36 bits ( log(68719476736)/log(2) ).
+
+
+3) Suponga tener tres procesadores de 8, 16 y 32 bits del bus de datos:
+    a) ¿Cuántos bits tienen las direcciones de cada procesador, considerando una memoria que
+almacena 64 bytes y la unidad mínima direccionable el byte?.
+    b) Idem a) pero considere que la unidad mínima direccionable es de 8, 16 y 32 bits ( 1, 2 y 4 bytes)
+respectivamente.
+    
+                                                        log( tamaño memoria / unidad mínima direccionable) / bus de datos ) / log(2)
+
+    a)  8bits -> 6 bits                                 log((64 / 1 ) / 1 ) / log (2)
+        16bits -> 5 bits                                log((64 / 1 ) / 2) / log (2)
+        32bits -> 4 bits                                log((64 / 1 ) / 4) / log (2)
+        
+    b)  8bits datos y 8 bits unidad mínima ->  6bits    log((64 / 1 ) / 1 ) / log (2)
+        8bits datos y 16 bits unidad mínima -> 5bits    log((64 / 2 ) / 1 ) / log (2)
+        8bits datos y 32 bits unidad mínima -> 4bits    log((64 / 4 ) / 1 ) / log (2)
+        
+        16bits datos y 8 bits unidad mínima -> 5bits    log((64 / 1 ) / 2 ) / log (2)
+        16bits datos y 16 bits unidad mínima -> 4bits   log((64 / 2 ) / 2 ) / log (2)
+        16bits datos y 32 bits unidad mínima -> 3bits   log((64 / 4 ) / 2 ) / log (2)
+
+        32bits datos y 8 bits unidad mínima ->  4bits   log((64 / 1 ) / 4 ) / log (2)
+        32bits datos y 16 bits unidad mínima -> 3bits   log((64 / 2 ) / 4 ) / log (2)
+        32bits datos y 32 bits unidad mínima -> 2bits   log((64 / 4 ) / 4 ) / log (2)
+
+
+4) ¿Cuáles son la mayor y menor direcciones en una memoria que almacena 220 bytes, en la
+cual el byte es la mínima unidad direccionable? ¿Cuáles son si la mínima unidad
+direccionable son 4 bytes?
+
+    1 byte unidad mínima        log(220)/log(2) = 7.78 -> 8 bits        min: 0000 0000      max: 1111 1111 
+    4 bytes undiad mínima       log(220/4)/log(2) = 5.78 -> 6 bits      min    00 0000      max:   11 1111
+
+
+5) ¿Por qué cree Ud. que las instrucciones en una PC se guardan en una memoria de 
+lecturaescritura (RAM) y no en una memoria de lectura solamente (ROM)?. Análogamente, ¿por
+qué cree que el BIOS de una PC está residente en una forma de ROM re-grabable conocida
+como EPROM? Indique una ventaja de que el BIOS esté en EPROM y no en ROM o RAM.
+
+    Las instrucciones se guardan en una memoria RAM ya que en caso de estar en ROM sería imposible indicar nuevas instrucciones,
+es decir, la PC haría siempre el mismo conjunto de instrucciones escritas en la ROM sin posibilidad de re-escribirlas.
+    El bios se encuentra en una memoria re-grabable como EPROM ya que en caso de que estuviese en ROM no sería posible 
+instalar una actualización de BIOS, en caso de ser necesario y si estuviese en RAM, al apagarse la PC, las instrucciones de la BIOS,
+se borrarian.
+
+
+6) Los buses de comunicación interno de una computadora suelen dividirse en Bus de Datos,
+Bus de Direcciones y Bus de Control. ¿Por qué es importante el número de líneas del Bus de
+Datos (8, 16 o 32 bits) y el número de líneas del bus de direcciones (32, 64, 128 bits)?. Trate
+de reflexionar sobre ventajas y desventajas de crecer el número de líneas de los buses de
+datos y direcciones.
+
+    Es importante el número de líneas en el bus de datos ya que permite transmitir más datos por petición, por lo tanto
+es posible indexar más datos a una sola dirección. Por otro lado, el número de líneas del bus de direcciones permite
+indexar una mayor cantidad de datos, permitiendo aumentar la cidad de bits del bus de direcciones. Las ventajas
+en ambos casos están relacionadas a una mayor capacidad de almacenamiento y transferencia de datos.
+
+
+7) ¿Cómo explica que, con la arquitectura de computadoras descripta y el modo de
+funcionamiento de la misma, Ud. pueda estar trabajando con un procesador de textos
+(ingresando caracteres por teclado, observando lo ingresado en la pantalla e inclusive
+imprimiendo en forma inalámbrica sobre una impresora multifunción) y al mismo tiempo
+oyendo por los parlantes la música que proviene de un CD ó de un reproductor MP3
+conectado a un puerto USB en la misma PC?
+
+    Esto es posible ya que, por un lado, la pc ejecuta las instrucciones necesarias para cumplir con los requisitos del usuario de forma
+tan rápida que aparentan ser instantáneas, y por otro lado, ejecuta las instrucciones de forma secuencial pero administrada,
+es decir, si queda a la espera de una accion externa, procede a ejecutar la siguiente instruccion, de este modo, puede ejecutar varias tareas
+de forma "sinmultánea".

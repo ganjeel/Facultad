@@ -1,0 +1,31 @@
+{1.Escriba un proceso que le permita al robot realizar un cuadrado a partir
+de la esquina donde está parado, girando en la dirección de  las agujas del 
+reloj y recibiendo como dato la longitud del lado.}
+
+programa ejercicio1
+
+procesos
+  proceso cuadrado (E lado: numero)
+  comenzar
+    repetir 4
+      repetir lado
+        mover
+      derecha
+  fin
+
+areas
+  ciudad: AreaC(1,1,100,100)
+
+robots
+  robot robot1
+  comenzar
+    cuadrado (1)
+  fin
+
+variables
+  R-info: robot1
+
+comenzar
+  AsignarArea(R-info, ciudad)
+  Iniciar(R-info, 1, 1)
+fin

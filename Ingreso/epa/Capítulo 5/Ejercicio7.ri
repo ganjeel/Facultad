@@ -1,0 +1,70 @@
+{7.(a)  Escriba el  proceso LimpiarEsquina que le permita al robot recoger
+todas  las flores y  todos  los papeles de la  esquina  donde se encuentra 
+parado.
+(b) Escriba un programa que le permita al robot recoger todas las flores y
+papeles  de  la avenida 89, utilizando los procesos implementados en 7 a).
+(c) Modifique  el  proceso  6.a) para que  el  robot realice el rectángulo
+indicado dejando  a su  paso todas las esquinas  vacías. Para hacerlo debe 
+utilizar el proceso LimpiarEsquina.
+(e) Rehacer el recorrido 4.b) utilizando el proceso definido en 7 c).}
+
+programa ejercicio7
+
+procesos
+
+  proceso LimpiarEsquina
+  comenzar
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+    mientras(HayPapelEnLaEsquina)
+      tomarPapel
+  fin
+
+  proceso rectangulo        {Parte (c)}
+  comenzar
+    ajuste
+    repetir 2
+      izquierda
+      repetir 5
+        LimpiarEsquina
+        mover
+      LimpiarEsquina
+      izquierda
+      repetir 3
+        LimpiarEsquina
+        mover
+      LimpiarEsquina
+    ajuste
+  fin
+
+  proceso figuraB           {Parte (e)}
+  variables
+    pos: numero
+  comenzar
+    pos := 1 
+    repetir 3
+      Pos(pos, pos)
+      rectangulo
+      pos := pos + 1
+  fin
+
+areas
+  ciudad: AreaC(1,1,100,100)
+
+robots
+  robot robot1
+  comenzar
+    Pos(89,1)
+    repetir 99
+      LimpiarEsquina
+      mover
+    LimpiarEsquina
+  fin
+
+variables
+  R-info: robot1
+
+comenzar
+  AsignarArea(R-info, ciudad)
+  Iniciar(R-info, 1, 1)
+fin

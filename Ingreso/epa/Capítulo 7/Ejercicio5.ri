@@ -1,0 +1,49 @@
+{5. Escriba un programa que le permita al robot recorrer las calles impares
+de la ciudad. Cada calle debe  recorrerse sólo hasta encontrar una  esquina 
+con alguna flor o algún papel o ambos, que seguro existe. Al finalizar cada 
+calle debe informarse cuantos pasos se ha dado hasta encontrar la esquina.}
+
+programa ejercicio5
+
+procesos
+
+  proceso RecorrerCalle
+  variables
+    deboDetenerme : boolean
+    cantidadPasos : numero
+  comenzar
+    cantidadPasos := 0
+    deboDetenerme := F
+    mientras (~ deboDetenerme)
+      si (HayPapelEnLaEsquina | HayFlorEnLaEsquina)
+        deboDetenerme := V
+      sino
+        mover
+        cantidadPasos := cantidadPasos + 1
+    Informar(cantidadPasos)
+  fin
+
+
+areas
+  ciudad: AreaC(1,1,100,100)
+
+robots
+  robot robot1
+  variables
+    pos : numero
+  comenzar
+    pos := 1
+    derecha
+    repetir 50
+      Pos(1, pos)
+      RecorrerCalle
+      pos := pos + 2
+  fin
+
+variables
+  R-info: robot1
+
+comenzar
+  AsignarArea(R-info, ciudad)
+  Iniciar(R-info, 1, 1)
+fin

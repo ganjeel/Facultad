@@ -1,0 +1,785 @@
+1.Represente los siguientes números en el sistema BSS restringido a 8 bits. 
+En los casos que no se pueda  representar, aclarar por qué.
+
+0               -->     0000 0000
+1                       0000 0001
+127             -->     0111 1111
+128             -->     1000 0000
+255             -->     1111 1111
+256             -->     ERROR: La represantación excede la cantidad máxima de bits.
+-1              -->     ERROR: EL sistema BSS no puede representar numeros con signo. 
+-7              
+-127    
+-128    
+-139    
+-56     
+130             -->     1000 0010
+45              -->     0010 1101
+90              -->     0101 1010
+-90     
+0,75            -->     0000 00,11
+2,5             -->     0000 010,1
+
+2.Interprete las siguientes cadenas de 8 bits en el sistema BSS.
+
+0000 0000    -->     0
+0000 0001    -->     1
+1111 1110    -->     254
+0111 1111    -->     127
+1111 1111    -->     255
+0001 0001    -->     17
+1001 1001    -->     153
+1010 1010    -->     170 
+0110 0110    -->     102
+
+3.Calcule el rango y resolución de un sistema de punto fijo en BSS con 7bits de parte entera y 3 de fraccionaria.
+
+Resolución = 2^(-3) = 0,125
+Rango = ( 2^7 - 1 ) +  ( 1 - 2^(-3) ) = 127,875
+
+4.Represente los siguientes números en el sistema del ejercicio 3. Si no es posible
+obtener una representación exacta, indique cuál es la más próxima y calcule en ese 
+caso el error cometido. Si el número a representar está fuera del rango del sistema, 
+señale que ese número “NO SE PUEDE REPRESENTAR”.7; 15,125; 2,2; 8,001; 123,25;50,50; 120
+
+7           -->     0000111,000     error = 0
+15,125      -->     0001111,001     error = 0
+2,2         -->     0000010,010     error = 0,05
+8,001       -->     0001000,001     error = 0,124
+123,25      -->     1111011,010     error = 0
+50,50       -->     0110010,100     error = 0
+120         -->     1111000,000     error = 0
+
+5.Interprete las siguientes cadenas en el sistema del ejercicio 3.
+
+0000000 000 -->     0 
+0101010 101 -->     42,625 
+1000000 000 -->     64 
+1111111 110 -->     127,75 
+1111111 111 -->     127,875 
+1010101 010 -->     85,25 
+0111111 111 -->     63,875 
+0110110 110 -->     54,75
+
+6.Calcule el resultado de realizar las sumas (ADD) y restas (SUB) indicadas a continuación. 
+Calcule el valor en el que quedarán los flags luego de realizada cada operación, de acuerdo 
+a que haya habido acarreo (flag C, de Carry) o se haya producido borrow (flag B, es el mismo 
+que C pero en la resta), o que el resultado sea cero en todos sus bits (flag Z, de Zero).
+
+ADD     00111101  
+        00010101
+        01010010
+
+        61 + 21 = 82            CORRECTA
+
+C = 0, Z = 0
+
+
+ADD     01111000  
+        11111001
+        01110001
+
+        120 + 249 = 113         INCORRECTA
+
+        101110001
+
+C = 1, Z = 0
+
+
+SUB     00111101  
+        00010101
+        00101000  
+
+        61 - 21 = 40            CORRECTA
+
+B = 0, Z = 0
+
+        
+SUB     00011010  
+        00001111
+        00001011
+
+        26 - 15 = 11            CORRECTA
+
+B = 0, Z = 0
+
+
+ADD     11000001  
+        00111010
+        11111011
+
+        193 + 58 = 251          CORRECTA
+
+C = 0, Z = 0
+
+
+ADD     01001110  
+        01110001
+        10111111
+
+        78 + 113 = 191          CORRECTA
+
+C = 0, Z = 0
+
+        
+SUB     11000001  
+        00111010
+        10000111
+
+        193 - 58 = 135          CORRECTA
+
+B = 0, Z = 0
+
+
+SUB     01110001 
+        01110001
+        00000000
+
+        113 - 113 = 0           CORRECTA
+
+B = 0, Z = 1
+
+
+ADD     01111110  
+        01111001
+        11110111
+
+        126 + 121 = 247         CORRECTA
+
+C = 0, Z = 0
+
+
+ADD     11001100  
+        11110000
+        10111100
+
+        204 + 240 = 188         INCORRECTA
+
+        110111100
+
+C = 1, Z = 0
+
+        
+SUB     01111110  
+        01111001
+        00000101
+
+        126 - 121 = 5           CORRECTA
+
+B = 0, Z = 0
+
+          
+SUB     11001100  
+        11110000
+        11011100
+
+        204 - 240 = 220         INCORRECTA
+
+        
+        11011100                Es el resultado en Ca2 negativo
+        00000001
+        11011011
+
+        00100100
+
+B = 1, Z = 0
+
+
+ADD     10111001 
+        10111011
+        01110100
+
+        185 + 187 = 116         INCORRECTA
+
+        101110100
+
+C = 1, Z = 0
+
+
+ADD     10000000  
+        10000000
+        00000000
+
+        128 + 128 = 0           INCORRECTA
+
+        100000000
+
+C = 1, Z = 1
+
+        
+SUB     10111001  
+        11100011
+        11010110
+
+        185 - 227 = 214         INCORRECTA
+
+        11010110                Resultado en Ca2 negativo
+
+B = 1, Z = 0
+
+
+SUB     10000000  
+        10000000
+        00000000
+
+        128 - 128 = 0           CORRECTA
+
+B = 0, Z = 1
+
+    
+ADD     00011010  
+        00001111
+        00101001
+        
+        26 + 15 = 41            CORRECTA
+
+C = 0, Z = 0
+
+
+ADD     00000000  
+        10000000
+        10000000
+
+        0 + 128 = 128           CORRECTA
+
+C = 0, Z = 0
+
+        
+SUB     00011010  
+        00001111
+        00001011
+
+        26 - 15 = 11            CORRECTA
+
+B = 0, Z = 0
+
+
+SUB     00000000  
+        10000000
+        10000000
+
+        0 - 128 = 128           INCORRECTA
+
+        10000000                Resultado en Ca2 negativo
+
+B = 1, Z = 0
+
+Recuerde que:   0+0=0 con C=0   1+0=1 con C=0 
+                0-0=0 con B=0   1-1=0 con B=0
+                0+1=1 con C=0   1+1=0 con C=1
+                1-0=1 con B=0   0-1=1 con B=1
+
+
+7.Suponga que los operandos del ejercicio anterior (ej. 6) eran números 
+representados en BSS. Determine si el resultado obtenido es correcto. 
+Para eso, interprete en BSS tanto los operandos como el resultado de 
+cada operación y luegocomparecon el resultado esperado trabajando en 
+decimal. En caso de que la operación haya dado resultado incorrecto, 
+indicar la/s posible/s cadena/s de bits que representa/n el resultado 
+correcto.
+
+8.Referido  al  ejercicio  7  sobre  la  operación  ADD:  Observando  
+cuáles  resultados  fueron  correctos  y  cuáles  fueron incorrectos 
+y relacionándolos con los flags, describa una regla para determinar 
+la correctitud dela operación ADD en el sistema BSS con la mera observación 
+de los flags (sin verificar la operación pasando por el sistema decimal).
+
+9.Trabaje de forma similar al ejercicio 8 pero con la operación SUB.
+
+Si existe carry o borrow la operación es incorrecta.
+
+
+10.Considere en el ejercicio 6, que el punto o coma fraccionaria se encuentra
+entre el bit 2 y el 3. Interprete el valor que tendrán  las  cadenas  de  
+bits  que  representan  los  operandos  y  los  resultados  como  BSS.  
+Observe  los  flags.  ¿Qué concluye?
+
+Se respeta lo deducido en los ejercicios anteriores.
+
+ADD     001111,01  
+        000101,01
+        010100,10
+
+        15,25 + 5,25 = 20,5     CORRECTA
+
+C = 0, Z = 0
+
+
+ADD     011110,00  
+        111110,01
+        011100,01
+
+        30 + 62,25 = 28,25      INCORRECTA
+
+C = 1, Z = 0
+
+
+SUB     000110,10  
+        000011,11
+        000010,11
+
+        6,5 - 3,75 = 2,75       CORRECTA
+
+B = 0, Z = 0
+
+
+SUB     110011,00  
+        111100,00
+        110111,00
+
+        51 - 60 = 55            INCORRECTA
+
+B = 1, Z = 0
+
+
+11.Escriba las cadenas de los sistemas BSS restringido a 4 bits. Considere el punto 
+(o coma fraccionaria) fijo en cada una de todas las posibles posiciones 
+(son 5 posibilidades en total, considerando que el punto fijo puede estar colocado 
+a la izquierda del MSB y a la derecha del LSB) y obtenga el rango y resolución de 
+cada uno de los sistemas de punto fijo resultantes. ¿Cuántas cadenas se pueden 
+escribir en cada caso? ¿Cuántos números se pueden representar en los distintos sistemas?
+
+siempre se pueden escribir 2^(n-1) cadenas, es decir, 15, y siempre se pueden 
+representar 15 numeros en cada sistema
+
+,0000
+rango = 1 - 2^(-4) = 0.9375
+resolución = 2^(-4) = 0.0625
+
+0,000
+rango = 1,875
+resolución =  0.125
+
+00,00
+rango = 3,750
+resolución = 0,250
+
+000,0
+rango = 7,5
+resolución = 0,5
+
+0000
+rango = 15
+resolución = 1
+
+
+12.Represente los números 0, 1, 3, 8, 12, 13, 22, 35, 99, 100 y 1255 en los sistemas BCD 
+y BCD empaquetado. Describa, con el mayor nivel de detalle posible, un procedimiento para 
+calcular sumas en BCD. Sin considerar representación de signo, realice las siguientes 
+operaciones en BCD: 32 + 45; 22 + 89; 1307 + 708
+
+                BCD                                
+0               0000   
+1               0001
+3               0011
+8               1000
+12              0001 0010
+13              0001 0011
+22              0010 0010
+35              0011 0101
+99              1001 1001
+100             0001 0000 0000
+1255            0001 0010 0101 0101
+
+Para calcular sumas en BCD es necesario sumar cada combinación de 4bits que representa cada dígito, 
+de derecha a izquierda, en caso dee encontrar una combinación de 4bits superior a 9 entonces se 
+suma 6 a dicha combinación.
+
+32 + 45
+                0011 0010
+              + 0100 0101
+                0111 0111
+
+22 + 89 
+
+                0010 0010
+              + 1000 1001 
+
+                ---- 1011
+                     0110
+                ---1 0001        
+                1011 0001
+                0110 ----
+              1 0001
+
+           0001 0001 0001 
+
+1307 + 708
+
+                0001 0011 0000 0111
+        +       0000 0111 0000 1000
+
+                               1111
+                               0110
+                          0001 0101         
+
+                     1010 0001 0101
+                     0110
+                0001 0000 0001 0101
+
+                0010 0000 0001 0101  
+
+
+13.Escriba los números 13160, 2988, 927 y 87127 en los sistemas BCD, BCD empaquetado y BSS. 
+Observe la cantidad de bits necesarios. ¿Qué conclusiones saca respecto de las ventajas y 
+desventajas del sistema BCD sobre BSS?
+
+
+                BSS                             BCD
+13160                11 0011 0110 1000          0001 0011 0001 0110 0000
+2988                    1011 1010 1100               0010 1001 1000 1000
+927                       11 1001 1111                    1001 0010 0111
+87127            1 0101 0100 0101 0111          1000 0111 0001 0010 0111
+
+Como ventaja de BSS está la menor utilización de bits respecto a BCD, sin embargo, es mucho
+más fácil leer un número representado en BCD.
+
+
+14.Haga el pasaje de binario a hexadecimal y de hexadecimal a BCH en forma directa 
+(sin utilizar sistema decimal). ¿Por qué cree que el sistema hexadecimal es muy utilizado?
+
+Binario                         Hexadecimal     
+   1 0100 0001 0000             1410
+   1 1100 0101 1101             1C5D
+ 111 0100 1100 1011             74CB
+1001 1111 0010 0011             9F23
+1110 1010 1100 1010             EACA
+ 101 1011 0101 1010             5B5A
+
+
+Hexadecimal                     Binario
+
+2801                            0010 1000 0000 0001
+1C5D                            0001 1100 0101 1101 
+78AB                            0111 1000 1010 1011
+F79A                            1111 0111 1001 1010
+7EF1                            0111 1110 1111 0001
+324A                            0011 0010 0100 1010
+
+El sistema hexadecimal es muy utilizado ya que es muy fácil pasar hexa a binario y no 
+demora nada de tiempo.
+
+15.Realizar las siguientes operaciones lógicas:
+a.              10011001 
+        AND     10101110
+                10001000
+
+b.              01011000 
+        AND     11110011
+                01010000
+
+c.              10011001 
+        OR      10101110
+                10111111
+
+d.              01011000 
+        OR      11110011
+                11111011
+
+e.              10011001 
+        XOR     10101110
+                00110111
+
+f.              01011000 
+        XOR     11110011
+                10101011
+
+g.      NOT     010111000
+                101000111
+
+h.      NOT     111010100
+                000101011
+
+i.              10011001 
+        NAND    10101110
+                01110111
+
+j.              01011000 
+        NAND    11110011
+                10101111
+
+
+k.              10111001 
+        NOR     11101110
+                00000000
+
+l.              01011010 
+        NOR     11010011
+                00100000
+
+m.              10111001 
+        XNOR    11101110
+                10101000
+
+n.              01011010 
+        XNOR    11110100
+                01010001
+
+
+16.Dado  un  byte X=[X7,X6,X5,X4,X3,X2,X1,X0] (los  X  representan  bits  con  valores indeterminados)
+¿qué  resultado obtendré al aplicarle una  operación lógica junto a un valor predeterminado (máscara)? 
+Analice para cada operación cómo los bits de la ‘máscara’ condicionan el resultado que se obtendrá.
+¿Puede reconocer un patrón para cada mascara?En los casos de más de una operación, obtenga el resultado 
+y a ese resultado aplíquele la operación siguiente.
+
+a.              XXXXXXXX
+        OR      00011000
+                XXX11XXX
+
+b.              XXXXXXXX  
+        OR      11001100
+                11XX11XX
+
+c.              XXXXXXXX  
+        AND     01010101
+                0X0X0X0X
+
+d.              XXXXXXXX
+        AND     01001100
+                0X00XX00
+
+e.              XXXXXXXX  
+        XOR     01010101
+                XẌXẌXẌXẌ
+
+f.              XXXXXXXX  
+        XOR     11001100
+                ẌẌXXẌẌXX
+
+g.              XXXXXXXX  
+        OR      10000001
+                1XXXXXX1
+
+        AND     00111001 
+                00XXX00X
+
+        XOR     11001111
+                11XXẌ11Ẍ
+
+h.              XXXXXXXX 
+        AND     10001110 
+                X000XXX0
+
+        OR      11001100
+                110011X0
+
+        XOR     01010011
+                100111Ẍ1
+
+a.              XXXXXXXX 
+        XOR     10010010
+                ẌXXẌXXẌX
+
+        AND     11100110
+                ẌXX00XẌ0
+
+        OR      00110111
+                ẌX110XẌ1
+
+i.              XXXXXXXX 
+        XNOR    10011001
+                XẌẌXXẌẌX
+
+        NAND    11001100
+                ẌX11ẌX11
+
+        NOR     00011000
+                XẌ000Ẍ00
+
+j.              XXXXXXXX 
+        XOR     10100101
+                ẌXẌXXẌXẌ
+
+        NAND    11100111
+                XẌX11XẌX
+
+        NOR     01010110
+                Ẍ0Ẍ0000Ẍ
+
+
+17. Complete  las  siguientes  líneas  punteadascon  el  operador  lógico  adecuado  (sean AND,  OR,  XOR,  NOT),  
+enlas siguientes expresiones de modo tal que se cumpla la igualdad propuesta:
+
+a.1000 OR 1101 = 1101
+b.1111 AND 0101 = 0101
+c.1101 XOR 1001 = 0100
+d. NOT (1111 AND 0011) = 1100
+
+e.              X3  X2  X1  X0 
+        AND     1   1   1   0 
+                X3  X2  X1  0
+  
+        NOR     0   1   0   1 
+                ~X3 0  ~X1  0      
+          
+        NOR     0   1   0   1
+                X3  0   X1  0 
+  
+
+f.              X3  X2  X1  X0
+        OR      1   0   0   0
+                1   X2  X1  X0
+          
+        AND     1   0   1   1
+                1   0   X1  X0
+        
+        XOR     1   1   1   1 
+        
+                0   1  ~X1 ~X0
+
+
+
+g       NOT     X3  X2  X1  X0
+                ~X3 ~X2 ~X1 ~X0
+
+        NAND    1   0   0   1
+
+                X3  1   1   X0
+
+
+18.Dado  un  byte X=[X7,X6,X5,X4,X3,X2,X1,X0](los  X  representan  bits  con  valores indeterminados),  
+aplíquele operaciones lógicas (1 o más) con un byte MASK, que deberá también determinar, para lograr 
+los siguientes efectos:
+
+a.Poner a 1 los bits 1, 3 y 5 dejando los demás iguales.
+
+                X7  X6  X5  X4  X3  X2  X1  X0
+        OR      0   0   1   0   1   0   1   0
+
+b.Poner a 1 los bits 4 y 6 dejando los demás iguales.
+
+                X7  X6  X5  X4  X3  X2  X1  X0
+        OR      0   1   0   1   0   0   0   0  
+
+c.Poner a 0 los bits 1, 3 y 5 dejando los demás iguales.
+
+                X7  X6  X5  X4  X3  X2  X1  X0
+        AND     1   1   0   1   0   1   0   1
+
+d.Poner a 0 los bits 4 y 6 dejando los demás iguales.
+
+                X7  X6  X5  X4  X3  X2  X1  X0
+        AND     1   0   1   0   1   1   1   1
+
+e.Cambiarlos bits 1, 3y 5 a su complementodejando los demás iguales.
+
+                X7  X6  X5  X4  X3  X2  X1  X0
+        XOR     0   0   1   0   1   0   1   0
+
+f.Cambiar los  bits 4 y 6 a  su  complemento dejando los demás iguales.
+
+                X7  X6  X5  X4  X3  X2  X1  X0
+        XOR     0   1   0   1   0   0   0   0
+
+g.Poner en 1 los bits 1 y 5, poner en 0 los bits 7 y 0, cambiar  el  bit 6 por  su  complemento y  dejar  los demás iguales.
+
+                X7  X6  X5  X4  X3  X2  X1  X0
+        OR      0   0   1   0   0   0   1   0
+        AND     0   1   1   1   1   1   1   0
+        XOR     0   1   0   0   0   0   0   0
+
+        
+h.Poner en 0 los bits 1, 5 y 6 cambiar el bit 4 por su complemento y dejar los demás iguales.
+
+                X7  X6  X5  X4  X3  X2  X1  X0
+        AND     1   0   0   1   1   1   0   1
+        XOR     0   0   0   1   0   0   0   0
+
+9.Construir la tabla de verdad de los siguientes circuitos. Especifique además la ecuación que describe la relación entre entradas-salidas. 
+
+1)   
+        A   OR      B       NAND    C
+        1    1      1        0      1    
+        0    1      1        0      1
+        1    1      0        0      1
+        0    0      0        1      1
+        1    1      1        1      0    
+        0    1      1        1      0
+        1    1      0        1      0
+        0    0      0        1      0
+
+2)
+        (A      NAND    B)      OR      (C      XOR     D)
+        1       0       1       0        1       0        1
+        0       1       1       1        1       0        1
+        1       1       0       1        1       0        1
+        0       1       0       1        1       0        1
+        1       0       1       1        0       1        1
+        0       1       1       1        0       1        1
+        1       1       0       1        0       1        1
+        0       1       0       1        0       1        1
+        1       0       1       1        1       1        0
+        0       1       1       1        1       1        0
+        1       1       0       1        1       1        0
+        0       1       0       1        1       1        0
+        1       0       1       0        0       0        0
+        0       1       1       1        0       0        0
+        1       1       0       1        0       0        0
+        0       1       0       1        0       0        0
+
+3)
+        ((A     AND     B)      XOR     C)      NOR     D
+        1       1       1       0        1       1        1
+        0       0       1       1        1       1        1
+        1       0       0       1        1       1        1
+        0       0       0       1        1       1        1
+        1       1       1       1        0       1        1
+        0       0       1       0        0       1        1
+        1       0       0       0        0       1        1
+        0       0       0       0        0       1        1
+        1       1       1       0        1       1        0
+        0       0       1       1        1       0        0
+        1       0       0       1        1       0        0
+        0       0       0       1        1       0        0
+        1       1       1       1        0       0        0
+        0       0       1       0        0       1        0
+        1       0       0       0        0       1        0
+        0       0       0       0        0       1        0
+
+4)
+        C =     A       AND     B
+                1       1       1
+                0       0       1
+                1       0       0
+                0       0       0
+
+        S =     A       XOR     B
+                1       0       1
+                0       1       1
+                1       1       0
+                0       0       0
+
+5)
+        S =     (A      XOR     B)      XOR     IN
+                1       0       1       1       1
+                0       1       1       0       1
+                1       1       0       0       1
+                0       0       0       1       1
+                1       0       1       0       0
+                0       1       1       1       0
+                1       1       0       1       0
+                0       0       0       0       0
+
+        C =     (A      AND     B)      OR      ((A     XOR     B)      AND     IN )
+                1       1       1       1       1       0       1        0      1
+                0       0       1       1       0       1       1        1      1
+                1       0       0       1       1       1       0        1      1
+                0       0       0       0       0       0       0        0      1
+                1       1       1       1       1       0       1        0      0
+                0       0       1       0       0       1       1        0      0
+                1       0       0       0       1       1       0        0      0
+                0       0       0       0       0       0       0        0      0
+
+6)
+        ((A     XOR     B)      XOR     A)      XOR     (B      XOR     (A      XOR     B))
+        1       0       1        1      1       0        1      1       1       0       1               
+        0       1       1        1      0       1        1      0       0       1       1
+        1       1       0        0      1       1        0      1       1       1       0
+        0       0       0        0      0       0        0      0       0       0       0
+
+7)
+        ((A     NAND    B)      NAND    ((A     NAND    A)      NAND    (B      NAND    B)))    NAND    ((A NAND B) NAND ((A NAND A) NAND (B NAND B)))
+        1       0       1       1       1       0       1       1        1      0       1        0                   1                            
+        0       1       1       0       0       1       0       1        1      0       1        1                   0                            
+        1       1       0       0       1       0       1       1        0      1       0        1                   0                            
+        0       1       0       1       0       1       0       0        0      1       0        0                   1                            

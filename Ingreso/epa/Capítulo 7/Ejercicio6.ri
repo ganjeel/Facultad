@@ -1,0 +1,87 @@
+{6. Escriba un programa  que le  permita al robot  recorrer cuadrados hasta
+encontrar un cuadrado con exactamente 3 flores y 2 papeles (seguro existe).
+El primer cuadrado es de lado 99 y los siguientes van  decrementando en uno 
+el tamaño del lado (98, 97 y así sucesivamente). }
+
+programa ejercicio6
+
+procesos
+
+  proceso ComprobarEsquina (ES flores: numero; ES papeles:numero)
+  variables
+    floresAux : numero
+    papelesAux : numero
+  comenzar
+    floresAux := 0
+    papelesAux := 0
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+      floresAux := floresAux + 1
+    mientras(HayPapelEnLaEsquina)
+      tomarPapel
+      papelesAux := papelesAux + 1
+    
+    repetir floresAux
+      depositarFlor
+
+    repetir papelesAux
+      depositarPapel
+
+    flores := flores + floresAux
+    papeles := papeles + papelesAux
+
+  fin
+
+  proceso RecorrerCuadrado (E lado:numero; ES deboDetenerme: boolean)
+  variables
+    cantidadFlores :numero
+    cantidadPapeles : numero
+    giros : numero
+    pasos : numero
+  comenzar
+    giros := 0
+    pasos := 0
+    cantidadFlores := 0
+    cantidadPapeles := 0
+    mientras (~deboDetenerme) & (giros < 4)
+      mientras (~deboDetenerme) & (pasos < lado)
+        ComprobarEsquina (cantidadFlores, cantidadPapeles)
+        si (cantidadFlores = 3) & (cantidadPapeles = 2)
+          deboDetenerme := V
+        sino
+          mover
+          pasos := pasos + 1
+      derecha
+      pasos := 0
+      giros := giros + 1
+      
+  fin
+
+areas
+  ciudad: AreaC(1,1,100,100)
+
+robots
+  robot robot1
+  variables
+    deboDetenerme : boolean
+
+    lado: numero
+    pos: numero
+  comenzar
+    deboDetenerme := F
+    lado := 99
+    pos := 1
+    mientras (~ deboDetenerme)
+      RecorrerCuadrado (lado, deboDetenerme)
+      lado := lado - 1
+      pos := pos + 1
+      Pos(pos, pos)
+  fin
+
+variables
+  R-info: robot1
+
+comenzar
+  AsignarArea(R-info, ciudad)
+  Iniciar(R-info, 1,1)
+fin

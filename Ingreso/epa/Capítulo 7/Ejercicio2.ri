@@ -1,0 +1,62 @@
+{2. El robot debe limpiar de flores las calles impares de la siguiente forma:
+toda flor que se  encuentre en una calle impar debe ser trasladada a la calle 
+par siguiente sobre  la misma avenida.  Por ejemplo si en (4,1) hay una flor, 
+debe llevarse  a  (4,2). Al terminar  el  recorrido debe informar la cantidad 
+total de flores que traslado.}
+
+programa ejercicio3
+
+procesos
+
+  proceso TrasladarFlor
+  comenzar
+    Pos(PosAv, PosCa + 1)
+    mientras(HayFlorEnLaBolsa)
+      depositarFlor
+    Pos(PosAv, PosCa - 1)
+  fin
+
+  proceso LimpiarEsquina (ES cantidadFlores: numero)
+  comenzar
+    mientras(HayFlorEnLaEsquina)
+      tomarFlor
+      cantidadFlores := cantidadFlores + 1
+    si (HayFlorEnLaBolsa)
+      TrasladarFlor
+  fin
+
+  proceso RecorrerCalle( E calle:numero; ES cantidadFlores:numero)
+  comenzar
+
+    repetir 99
+      LimpiarEsquina (cantidadFlores)
+      mover
+    LimpiarEsquina (cantidadFlores)
+  fin
+
+areas
+  ciudad: AreaC(1,1,100,100)
+
+robots
+  robot robot1
+  variables
+    calle: numero
+    cantidadFlores: numero
+  comenzar
+    calle := 1
+    cantidadFlores := 0
+    derecha
+    repetir 50
+      RecorrerCalle (calle, cantidadFlores)
+      Pos(1, PosCa + 2)
+    Informar(cantidadFlores)
+  fin
+
+variables
+  R-info: robot1
+
+
+comenzar
+  AsignarArea(R-info, ciudad)
+  Iniciar(R-info, 1,1)
+fin 

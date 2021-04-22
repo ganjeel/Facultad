@@ -1,0 +1,12 @@
+1)
+    a)
+        i-      Toma todas las flores menos la de (6,1)
+        ii-     No hace nada, ya que no hay flores en el incio
+        iii-    Idem ii
+
+    b)
+        i-      No se mueve, solo se mueve si no hay flores y papeles
+        ii-     Se mueve hasta (1,11) e informa 10
+        iii-    Idem ii
+        iv-     Idem ii
+
