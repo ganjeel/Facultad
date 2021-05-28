@@ -1,0 +1,6 @@
+a)
+    El programa lee números los cuales va insertando al inicio de una lista hasta encontrarse con el número 0, el cual hace que el programa finalice.
+
+b)
+    La lista quedaria conformada:
+        [ 48 | -> ]  [ 13 | -> ]  [ 21 | ->] [10 | -> ]  [nil]

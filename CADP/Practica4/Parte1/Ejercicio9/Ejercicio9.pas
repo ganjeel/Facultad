@@ -60,7 +60,7 @@ type
     
 
 var
-    i, cantidadAlumnosPar :integer;
+    i, dimL, cantidadAlumnosPar :integer;
     porcentajeAlumnosPar :real;
     a :alumnos;
     aActual :alumno;
@@ -70,16 +70,21 @@ begin
     m.primero.anio := 2021;
     m.segundo.anio := 2021;
     cantidadAlumnosPar := 0;
+    dimL := 0;
+    i := 1;
 
     // Cargar alumnos
-    for i:=1 to dimF do
+    leerAlumno(aActual);
+    a[i] := aActual;
+    while((a[i].dni <> -1) and (i<dimF)) do
         begin
+            dimL := dimL + 1;
             leerAlumno(aActual);
             a[i] := aActual;
         end;
 
     // Procesar alumnos
-    for i:=1 to dimF do
+    for i:=1 to dimL do
         begin
             // Digitos pares
             if (comprobarDigPar(a[i].dni)) then
@@ -96,7 +101,7 @@ begin
                     actualizarMaximo(m.segundo, a[i]);  // Actualizo el segundo máximo
 
         end;
-    porcentajeAlumnosPar := cantidadAlumnosPar / dimF;
+    porcentajeAlumnosPar := cantidadAlumnosPar / dimL;
 
     writeln(
         'El porcentaje de alumnos con DNI compuesto solo por dígitos pares es: ', 
