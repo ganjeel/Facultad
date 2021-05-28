@@ -36,31 +36,26 @@ type
         buscarAlumno := pos;
     end;
 
-    procedure insertarAlumno(var alumnos:_alumnos; var diml:integer; alumno:_alumno);
+    procedure insertarAlumno(var alumnos:_alumnos; var dimL:integer; alumno:_alumno);
     var
         pos, i :integer;
-        salir:boolean;
     begin
         pos := 1;
-        salir := false;
-        encontrado := false;
-        while ((pos <= dimL ) and (not salir)) do
+
+        if (dimL < dimF) then
             begin
-                
+                while((pos <= dimL) and (alumnos[pos].numero < alumno.numero)) do
+                    pos := pos + 1;
                 if (alumnos[pos].numero >= alumno.numero) then
                     begin
-                        if (dimL < dimF) then
-                            begin
-                                dimL := dimL + 1;
-                                for i := (dimL) down to (pos+1) do
-                                alumnos[i] := alumnos[i-1];
-                                alumnos[pos] := alumno;
-                            end;
-                        salir := true;
-                    end
-                else
-                    pos := pos + 1;
-            end;
+                        dimL := dimL + 1;
+                        for i := (dimL) down to (pos+1) do
+                            alumnos[i] := alumnos[i-1];
+                        alumnos[pos] := alumno;
+                    end;
+            end
+        else
+            writeln('No es posible incrementar ya que el vector esta completo.');
     end;
 
     procedure eliminarAlumnoPos(var alumnos:_alumnos; var dimL:integer; posEliminar:integer);
