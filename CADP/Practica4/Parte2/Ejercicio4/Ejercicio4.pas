@@ -49,7 +49,7 @@ type
                 if (alumnos[pos].numero >= alumno.numero) then
                     begin
                         dimL := dimL + 1;
-                        for i := (dimL) down to (pos+1) do
+                        for i := (dimL) down to (pos) do
                             alumnos[i] := alumnos[i-1];
                         alumnos[pos] := alumno;
                     end;
